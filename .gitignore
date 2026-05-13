@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.env
+.dev.vars
+.wrangler/
+.mf/
+*.local
+.DS_Store
+.gemini/
+.vscode/

@@ -1,0 +1,20 @@
+{
+  "name": "destinair-server",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:migrate": "wrangler d1 execute destinair-db --local --file=src/db/schema.sql",
+    "db:seed": "wrangler d1 execute destinair-db --local --file=src/db/seed.sql",
+    "db:migrate:remote": "wrangler d1 execute destinair-db --remote --file=src/db/schema.sql",
+    "db:seed:remote": "wrangler d1 execute destinair-db --remote --file=src/db/seed.sql"
+  },
+  "dependencies": {
+    "hono": "^4.6.0"
+  },
+  "devDependencies": {
+    "wrangler": "^3.90.0"
+  }
+}

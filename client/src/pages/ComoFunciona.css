@@ -1,0 +1,213 @@
+.cf-hero {
+  padding: var(--space-24) 0 var(--space-16);
+}
+
+.cf-explainer {
+  padding: var(--space-10);
+  text-align: center;
+}
+
+.cf-explainer__icon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary-100);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-4);
+}
+
+.cf-explainer__title {
+  font-size: var(--font-size-2xl);
+  margin-bottom: var(--space-4);
+}
+
+.cf-explainer__text {
+  color: var(--color-text-secondary);
+  max-width: 600px;
+  margin: 0 auto var(--space-6);
+  line-height: var(--line-height-relaxed);
+}
+
+.cf-funds-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.cf-fund-type {
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  text-align: center;
+}
+
+.cf-fund-type--fdca {
+  background: var(--color-primary-50);
+  border: 1px solid var(--color-primary-200);
+}
+
+.cf-fund-type--fdi {
+  background: var(--color-secondary-50);
+  border: 1px solid var(--color-secondary-100);
+}
+
+.cf-fund-type h3 {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-extrabold);
+  margin-bottom: var(--space-2);
+}
+
+.cf-fund-type p {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-3);
+}
+
+.cf-fund-type small {
+  display: block;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  margin-top: var(--space-2);
+}
+
+.cf-explainer__highlight {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-5);
+  background: var(--color-secondary-50);
+  border: 1px solid var(--color-secondary-100);
+  border-radius: var(--radius-lg);
+  color: var(--color-secondary-dark);
+  font-size: var(--font-size-sm);
+}
+
+@media (max-width: 640px) {
+  .cf-funds-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Steps Timeline ── */
+.cf-steps {
+  max-width: 700px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.cf-step {
+  display: flex;
+  gap: var(--space-6);
+}
+
+.cf-step__line {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.cf-step__dot {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+}
+
+.cf-step__dot--primary { background: var(--color-primary); }
+.cf-step__dot--secondary { background: var(--color-secondary); }
+.cf-step__dot--accent { background: var(--color-accent); }
+
+.cf-step__connector {
+  width: 2px;
+  flex: 1;
+  background: var(--color-border);
+  min-height: 20px;
+}
+
+.cf-step__content {
+  flex: 1;
+  margin-bottom: var(--space-6);
+  padding: var(--space-6);
+}
+
+.cf-step__number {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-2);
+}
+
+.cf-step__title {
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--space-3);
+}
+
+.cf-step__desc {
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: var(--space-4);
+  font-size: var(--font-size-sm);
+}
+
+.cf-step__tip {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-secondary-50);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  color: var(--color-secondary-dark);
+}
+
+.cf-step__tip svg { flex-shrink: 0; margin-top: 2px; }
+
+@media (max-width: 640px) {
+  .cf-step__line { display: none; }
+  .cf-step { flex-direction: column; }
+}
+
+/* ── Myths ── */
+.myth-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.myth-card__myth {
+  padding: var(--space-5) var(--space-6);
+  background: #FEF2F2;
+  border-bottom: 1px solid #FECACA;
+}
+
+.myth-card__truth {
+  padding: var(--space-5) var(--space-6);
+  background: var(--color-secondary-50);
+}
+
+.myth-card__label {
+  display: inline-block;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-2);
+}
+
+.myth-card__label--myth { color: var(--color-error); }
+.myth-card__label--truth { color: var(--color-success); }
+
+.myth-card p {
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  line-height: var(--line-height-relaxed);
+}
