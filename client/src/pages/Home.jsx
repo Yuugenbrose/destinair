@@ -7,8 +7,8 @@ import {
 import './Home.css';
 
 const stats = [
-  { value: 'R$ 4,2 bi', label: 'Potencial não destinado/ano', icon: TrendingUp },
-  { value: '< 3%', label: 'dos contribuintes destinam', icon: Users },
+  { value: 'R$ 12 bi+', label: 'em potencial de destinação por ano', icon: TrendingUp },
+  { value: '< 1%', label: 'dos declarantes usam essa possibilidade', icon: Users },
   { value: '5.570', label: 'municípios com fundos', icon: Search },
   { value: '6%', label: 'do IR pode ser destinado', icon: Calculator },
 ];
@@ -17,25 +17,25 @@ const features = [
   {
     icon: BookOpen,
     title: 'Aprenda',
-    desc: 'Entenda como funciona a destinação do IRPF com guias visuais e linguagem acessível.',
+    desc: 'Entenda a destinação do IRPF com explicações diretas, exemplos práticos e linguagem acessível.',
     color: 'primary',
   },
   {
     icon: Calculator,
     title: 'Simule',
-    desc: 'Descubra quanto você pode destinar sem custo adicional com nosso simulador em tempo real.',
+    desc: 'Descubra quanto pode destinar sem pagar nada a mais e veja o impacto da sua decisão.',
     color: 'secondary',
   },
   {
     icon: Search,
     title: 'Encontre',
-    desc: 'Localize fundos sociais do seu município ou estado e conheça os projetos que executam.',
+    desc: 'Localize fundos sociais do seu município ou estado e conheça os projetos apoiados.',
     color: 'accent',
   },
   {
     icon: BarChart3,
     title: 'Acompanhe',
-    desc: 'Veja dashboards de transparência com dados reais sobre arrecadação e impacto social.',
+    desc: 'Acompanhe dashboards de transparência com dados públicos sobre arrecadação e impacto social.',
     color: 'primary',
   },
 ];
@@ -50,20 +50,20 @@ const steps = [
 const testimonials = [
   {
     name: 'Ana Beatriz',
-    role: 'Contadora, São Paulo',
-    text: 'Recomendo o DestinaIR para todos os meus clientes. A plataforma simplifica algo que antes era confuso e pouco conhecido.',
+    role: 'Contadora e consultora fiscal',
+    text: 'A destinação deixa de parecer algo burocrático quando a orientação está clara. A plataforma organiza o passo a passo e dá segurança para quem quer contribuir.',
     rating: 5,
   },
   {
     name: 'Carlos Eduardo',
-    role: 'Contribuinte, Curitiba',
-    text: 'Nunca imaginei que pudesse direcionar meu imposto para causas locais sem pagar nada a mais. Agora faço todo ano!',
+    role: 'Contribuinte pessoa física',
+    text: 'Eu não sabia que podia destinar parte do imposto sem custo extra. Depois de entender o processo, passou a fazer parte da minha declaração.',
     rating: 5,
   },
   {
     name: 'Maria José',
-    role: 'Gestora de Fundo, Cornélio Procópio',
-    text: 'Desde que começamos a usar a plataforma, a arrecadação do nosso fundo municipal aumentou significativamente.',
+    role: 'Gestora de fundo municipal',
+    text: 'Quando o contribuinte entende onde o recurso chega, a adesão melhora. Essa clareza ajuda muito na arrecadação e no engajamento local.',
     rating: 5,
   },
 ];
@@ -81,16 +81,16 @@ export default function Home() {
         <div className="container hero__content">
           <div className="hero__badge animate-fade-in-up">
             <Sparkles size={14} />
-            100% gratuito — sem custo adicional para o contribuinte
+            Orientação gratuita para quem quer destinar o IR com segurança
           </div>
           <h1 className="hero__title animate-fade-in-up animate-delay-1">
             Destine seu imposto<br />
             para <span className="hero__title-highlight">quem precisa</span>
           </h1>
           <p className="hero__subtitle animate-fade-in-up animate-delay-2">
-            Até 6% do seu Imposto de Renda pode ir para fundos de proteção à
-            criança, adolescente e pessoa idosa — sem pagar nada a mais.
-            Nós te mostramos como.
+            Até 6% do seu Imposto de Renda pode ser direcionado para fundos de
+            proteção à criança, adolescente e pessoa idosa — sem custo adicional.
+            Nós explicamos como fazer isso na prática.
           </p>
           <div className="hero__actions animate-fade-in-up animate-delay-3">
             <Link to="/simulador" className="btn btn--primary btn--lg">
@@ -104,7 +104,7 @@ export default function Home() {
           </div>
           <div className="hero__trust animate-fade-in-up animate-delay-4">
             <Shield size={16} />
-            <span>Baseado na legislação brasileira vigente (ECA e Estatuto da Pessoa Idosa)</span>
+            <span>Baseado na legislação brasileira vigente, com foco em fundos públicos fiscalizados</span>
           </div>
         </div>
       </section>
@@ -131,7 +131,7 @@ export default function Home() {
         <div className="container">
           <div className="section-header">
             <span className="section-header__tag">Como ajudamos</span>
-            <h2 className="section-header__title">Tudo que você precisa em um só lugar</h2>
+            <h2 className="section-header__title">Tudo o que você precisa em um só lugar</h2>
             <p className="section-header__subtitle">
               Da educação ao acompanhamento — uma jornada completa para transformar seu imposto em impacto social.
             </p>
@@ -157,7 +157,7 @@ export default function Home() {
             <span className="section-header__tag" style={{ color: 'var(--color-secondary-light)' }}>Passo a passo</span>
             <h2 className="section-header__title">Simples assim</h2>
             <p className="section-header__subtitle">
-              Em 4 passos, você destina parte do seu imposto para causas sociais — sem pagar nada a mais.
+              Em 4 passos, você direciona parte do seu imposto para causas sociais — sem pagar nada a mais.
             </p>
           </div>
           <div className="steps-grid">
