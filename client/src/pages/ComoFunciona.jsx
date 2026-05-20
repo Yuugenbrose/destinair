@@ -3,6 +3,7 @@ import {
   FileText, Calculator, Search, CreditCard, CheckCircle2,
   ArrowRight, AlertCircle, Info, ExternalLink
 } from 'lucide-react';
+import useScrollReveal from '../hooks/useScrollReveal';
 import './ComoFunciona.css';
 
 const steps = [
@@ -44,10 +45,12 @@ const myths = [
 ];
 
 export default function ComoFunciona() {
+  const rootRef = useScrollReveal();
+
   return (
-    <div className="como-funciona">
+    <div className="como-funciona" ref={rootRef}>
       {/* Hero */}
-      <section className="cf-hero section--dark">
+      <section className="cf-hero section--dark" data-reveal>
         <div className="container">
           <div className="section-header">
             <span className="section-header__tag" style={{ color: 'var(--color-secondary-light)' }}>Guia completo</span>
@@ -61,9 +64,9 @@ export default function ComoFunciona() {
       </section>
 
       {/* Explainer */}
-      <section className="section">
+      <section className="section" data-reveal>
         <div className="container container--narrow">
-          <div className="cf-explainer card">
+          <div className="cf-explainer card" data-reveal>
             <div className="cf-explainer__icon">
               <Info size={24} />
             </div>
@@ -73,13 +76,13 @@ export default function ComoFunciona() {
               dois tipos de fundos sociais:
             </p>
             <div className="cf-funds-grid">
-              <div className="cf-fund-type cf-fund-type--fdca">
+              <div className="cf-fund-type cf-fund-type--fdca" data-reveal style={{ '--reveal-delay': '80ms' }}>
                 <h3>FDCA</h3>
                 <p>Fundo dos Direitos da Criança e do Adolescente</p>
                 <span className="badge badge--primary">Até 3% do IR</span>
                 <small>Base legal: ECA — Lei nº 8.069/1990</small>
               </div>
-              <div className="cf-fund-type cf-fund-type--fdi">
+              <div className="cf-fund-type cf-fund-type--fdi" data-reveal style={{ '--reveal-delay': '160ms' }}>
                 <h3>FDI</h3>
                 <p>Fundo dos Direitos da Pessoa Idosa</p>
                 <span className="badge badge--secondary">Até 3% do IR</span>
@@ -95,7 +98,7 @@ export default function ComoFunciona() {
       </section>
 
       {/* Steps */}
-      <section className="section section--alt">
+      <section className="section section--alt" data-reveal>
         <div className="container">
           <div className="section-header">
             <span className="section-header__tag">Passo a passo</span>
@@ -103,7 +106,7 @@ export default function ComoFunciona() {
           </div>
           <div className="cf-steps">
             {steps.map((step, i) => (
-              <div key={i} className="cf-step">
+              <div key={i} className="cf-step" data-reveal style={{ '--reveal-delay': `${i * 120}ms` }}>
                 <div className="cf-step__line">
                   <div className={`cf-step__dot cf-step__dot--${step.color}`}>
                     <step.icon size={20} />
@@ -126,7 +129,7 @@ export default function ComoFunciona() {
       </section>
 
       {/* Myths */}
-      <section className="section">
+      <section className="section" data-reveal>
         <div className="container">
           <div className="section-header">
             <span className="section-header__tag">Mitos e Verdades</span>
@@ -134,7 +137,7 @@ export default function ComoFunciona() {
           </div>
           <div className="grid grid--2">
             {myths.map((m, i) => (
-              <div key={i} className="myth-card card">
+              <div key={i} className="myth-card card" data-reveal style={{ '--reveal-delay': `${i * 120}ms` }}>
                 <div className="myth-card__myth">
                   <span className="myth-card__label myth-card__label--myth">✕ Mito</span>
                   <p>{m.myth}</p>
@@ -150,7 +153,7 @@ export default function ComoFunciona() {
       </section>
 
       {/* CTA */}
-      <section className="cta-section">
+      <section className="cta-section" data-reveal>
         <div className="container text-center">
           <h2 className="cta-section__title">Pronto para simular?</h2>
           <p className="cta-section__subtitle">Descubra em segundos quanto do seu imposto pode se tornar impacto social.</p>

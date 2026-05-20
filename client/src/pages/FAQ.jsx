@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import { ChevronDown, ChevronUp, HelpCircle } from 'lucide-react';
+import useScrollReveal from '../hooks/useScrollReveal';
 import './FAQ.css';
 
 const faqData = [
@@ -34,6 +35,7 @@ const faqData = [
 export default function FAQ() {
   const [open, setOpen] = useState(null);
   const [search, setSearch] = useState('');
+  const rootRef = useScrollReveal();
 
   const toggle = key => setOpen(open === key ? null : key);
   const normalizedSearch = search.trim().toLowerCase();
@@ -56,8 +58,8 @@ export default function FAQ() {
   }, [normalizedSearch]);
 
   return (
-    <div className="faq-page">
-      <section className="cf-hero section--dark">
+    <div className="faq-page" ref={rootRef}>
+      <section className="cf-hero section--dark" data-reveal>
         <div className="container">
           <div className="section-header">
             <span className="section-header__tag" style={{color:'var(--color-secondary-light)'}}>FAQ</span>
@@ -67,9 +69,9 @@ export default function FAQ() {
         </div>
       </section>
 
-      <section className="section">
+      <section className="section" data-reveal>
         <div className="container container--narrow">
-          <div className="faq-search card">
+          <div className="faq-search card" data-reveal>
             <label className="faq-search__label" htmlFor="faq-search-input">Buscar no FAQ</label>
             <input
               id="faq-search-input"
@@ -83,7 +85,7 @@ export default function FAQ() {
 
           {filteredFaqData.length > 0 ? (
             filteredFaqData.map((cat, ci) => (
-              <div key={cat.cat} className="faq-category">
+              <div key={cat.cat} className="faq-category" data-reveal style={{ '--reveal-delay': `${ci * 120}ms` }}>
                 <h2 className="faq-category__title"><HelpCircle size={20}/> {cat.cat}</h2>
                 {cat.items.map((item, ii) => {
                   const key = `${cat.cat}-${ii}`;
@@ -101,7 +103,7 @@ export default function FAQ() {
               </div>
             ))
           ) : (
-            <div className="faq-empty card">
+            <div className="faq-empty card" data-reveal>
               <h2 className="faq-empty__title">Nenhum resultado encontrado</h2>
               <p className="faq-empty__text">Tente pesquisar por termos mais simples, como “DARF”, “fundos” ou “restituição”.</p>
             </div>

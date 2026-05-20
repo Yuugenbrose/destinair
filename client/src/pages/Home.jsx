@@ -4,6 +4,7 @@ import {
   Shield, Users, TrendingUp, BookOpen, CheckCircle2,
   ChevronRight, Sparkles
 } from 'lucide-react';
+import useScrollReveal from '../hooks/useScrollReveal';
 import './Home.css';
 
 const stats = [
@@ -69,8 +70,10 @@ const testimonials = [
 ];
 
 export default function Home() {
+  const rootRef = useScrollReveal();
+
   return (
-    <div className="home">
+    <div className="home" ref={rootRef}>
       {/* ── Hero ── */}
       <section className="hero">
         <div className="hero__bg">
@@ -79,20 +82,20 @@ export default function Home() {
           <div className="hero__orb hero__orb--3"></div>
         </div>
         <div className="container hero__content">
-          <div className="hero__badge animate-fade-in-up">
+          <div className="hero__badge" data-reveal style={{ '--reveal-delay': '0ms' }}>
             <Sparkles size={14} />
             Orientação gratuita para quem quer destinar o IR com segurança
           </div>
-          <h1 className="hero__title animate-fade-in-up animate-delay-1">
+          <h1 className="hero__title" data-reveal style={{ '--reveal-delay': '120ms' }}>
             Destine seu imposto<br />
             para <span className="hero__title-highlight">quem precisa</span>
           </h1>
-          <p className="hero__subtitle animate-fade-in-up animate-delay-2">
+          <p className="hero__subtitle" data-reveal style={{ '--reveal-delay': '220ms' }}>
             Até 6% do seu Imposto de Renda pode ser direcionado para fundos de
             proteção à criança, adolescente e pessoa idosa — sem custo adicional.
             Nós explicamos como fazer isso na prática.
           </p>
-          <div className="hero__actions animate-fade-in-up animate-delay-3">
+          <div className="hero__actions" data-reveal style={{ '--reveal-delay': '320ms' }}>
             <Link to="/simulador" className="btn btn--primary btn--lg">
               <Calculator size={20} />
               Simular minha destinação
@@ -102,7 +105,7 @@ export default function Home() {
               <ArrowRight size={18} />
             </Link>
           </div>
-          <div className="hero__trust animate-fade-in-up animate-delay-4">
+          <div className="hero__trust" data-reveal style={{ '--reveal-delay': '420ms' }}>
             <Shield size={16} />
             <span>Baseado na legislação brasileira vigente, com foco em fundos públicos fiscalizados</span>
           </div>
@@ -110,11 +113,11 @@ export default function Home() {
       </section>
 
       {/* ── Stats ── */}
-      <section className="section section--alt">
+      <section className="section section--alt" data-reveal>
         <div className="container">
           <div className="grid grid--4">
             {stats.map((s, i) => (
-              <div key={i} className={`kpi-card card card--flat animate-fade-in-up animate-delay-${i + 1}`}>
+              <div key={i} className="kpi-card card card--flat" data-reveal style={{ '--reveal-delay': `${i * 120}ms` }}>
                 <div className="kpi-card__icon">
                   <s.icon size={24} />
                 </div>
@@ -127,7 +130,7 @@ export default function Home() {
       </section>
 
       {/* ── Features ── */}
-      <section className="section">
+      <section className="section" data-reveal>
         <div className="container">
           <div className="section-header">
             <span className="section-header__tag">Como ajudamos</span>
@@ -138,7 +141,7 @@ export default function Home() {
           </div>
           <div className="grid grid--4">
             {features.map((f, i) => (
-              <div key={i} className={`feature-card card animate-fade-in-up animate-delay-${i + 1}`}>
+              <div key={i} className="feature-card card" data-reveal style={{ '--reveal-delay': `${i * 120}ms` }}>
                 <div className={`feature-card__icon feature-card__icon--${f.color}`}>
                   <f.icon size={24} />
                 </div>
@@ -151,7 +154,7 @@ export default function Home() {
       </section>
 
       {/* ── How it works ── */}
-      <section className="section section--dark">
+      <section className="section section--dark" data-reveal>
         <div className="container">
           <div className="section-header">
             <span className="section-header__tag" style={{ color: 'var(--color-secondary-light)' }}>Passo a passo</span>
@@ -162,7 +165,7 @@ export default function Home() {
           </div>
           <div className="steps-grid">
             {steps.map((s, i) => (
-              <div key={i} className="step-card card--glass animate-fade-in-up animate-delay-${i + 1}">
+              <div key={i} className="step-card card--glass" data-reveal style={{ '--reveal-delay': `${i * 120}ms` }}>
                 <div className="step-card__num">{s.num}</div>
                 <h3 className="step-card__title">{s.title}</h3>
                 <p className="step-card__desc">{s.desc}</p>
@@ -179,7 +182,7 @@ export default function Home() {
       </section>
 
       {/* ── Testimonials ── */}
-      <section className="section">
+      <section className="section" data-reveal>
         <div className="container">
           <div className="section-header">
             <span className="section-header__tag">Depoimentos</span>
@@ -187,7 +190,7 @@ export default function Home() {
           </div>
           <div className="grid grid--3">
             {testimonials.map((t, i) => (
-              <div key={i} className="testimonial-card card animate-fade-in-up animate-delay-${i + 1}">
+              <div key={i} className="testimonial-card card" data-reveal style={{ '--reveal-delay': `${i * 120}ms` }}>
                 <div className="testimonial-card__stars">
                   {Array(t.rating).fill(0).map((_, j) => (
                     <span key={j} className="testimonial-card__star">★</span>
@@ -210,7 +213,7 @@ export default function Home() {
       </section>
 
       {/* ── CTA ── */}
-      <section className="cta-section">
+      <section className="cta-section" data-reveal>
         <div className="container text-center">
           <h2 className="cta-section__title">Pronto para fazer a diferença?</h2>
           <p className="cta-section__subtitle">
