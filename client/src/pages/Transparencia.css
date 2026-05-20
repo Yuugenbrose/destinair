@@ -1,0 +1,5 @@
+.trans-charts { display:grid;grid-template-columns:1fr 1fr;gap:var(--space-6); }
+.trans-chart { padding:var(--space-6); }
+.trans-chart h3 { font-size:var(--font-size-base);font-weight:var(--font-weight-semibold);margin-bottom:var(--space-4); }
+.trans-chart--small { }
+@media(max-width:768px) { .trans-charts{grid-template-columns:1fr;} }
