@@ -3,12 +3,12 @@ import { Heart, Target, Eye, Users, Code, Github } from 'lucide-react';
 import './Sobre.css';
 
 const team = [
-  { name: 'Integrante 1', role: 'Frontend — Landing & Educativo' },
-  { name: 'Integrante 2', role: 'Frontend — Simulador & Fundos' },
-  { name: 'Integrante 3', role: 'Frontend — Transparência & Gráficos' },
-  { name: 'Integrante 4', role: 'Backend — Auth & CRUD Fundos' },
-  { name: 'Integrante 5', role: 'Backend — Doações, Projetos & API' },
-  { name: 'Integrante 6', role: 'Frontend — Auth, Dashboard & Admin' },
+  { name: 'Júlio Cezar Bandeira Covary', role: 'Frontend — Landing & Educativo' },
+  { name: 'Guilherme Eduardo Vilas Boas Sebastião', role: 'Frontend — Simulador & Fundos' },
+  { name: 'Igor Luiz Ribeiro Santos', role: 'Frontend — Transparência & Gráficos' },
+  { name: 'Davi Peres Gomes Leite Barreto', role: 'Backend — Auth & CRUD Fundos' },
+  { name: 'Matheus Peres Gomes Leite Barreto', role: 'Backend — Doações, Projetos & API' },
+  { name: 'João Victor Guidorizi da Silva', role: 'Frontend — Auth, Dashboard & Admin' },
 ];
 
 export default function Sobre() {
