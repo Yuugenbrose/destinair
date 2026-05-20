@@ -22,7 +22,7 @@ export default function Dashboard() {
       <section className="section">
         <div className="container">
           <div className="dash-welcome">
-            <h1>Olá, {user?.name || 'Contribuinte'} 👋</h1>
+            <h1>Boas-vindas ao seu painel de impacto, {user?.name || 'Contribuinte'} 🚀</h1>
             <p>Acompanhe suas destinações e veja o impacto do seu imposto.</p>
           </div>
 
