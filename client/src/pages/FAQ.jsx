@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { ChevronDown, ChevronUp, HelpCircle } from 'lucide-react';
 import './FAQ.css';
 
@@ -33,7 +33,27 @@ const faqData = [
 
 export default function FAQ() {
   const [open, setOpen] = useState(null);
+  const [search, setSearch] = useState('');
+
   const toggle = key => setOpen(open === key ? null : key);
+  const normalizedSearch = search.trim().toLowerCase();
+
+  const filteredFaqData = useMemo(() => {
+    if (!normalizedSearch) {
+      return faqData;
+    }
+
+    return faqData
+      .map(cat => ({
+        ...cat,
+        items: cat.items.filter(item => {
+          const question = item.q.toLowerCase();
+          const answer = item.a.toLowerCase();
+          return question.includes(normalizedSearch) || answer.includes(normalizedSearch) || cat.cat.toLowerCase().includes(normalizedSearch);
+        }),
+      }))
+      .filter(cat => cat.items.length > 0);
+  }, [normalizedSearch]);
 
   return (
     <div className="faq-page">
@@ -49,24 +69,43 @@ export default function FAQ() {
 
       <section className="section">
         <div className="container container--narrow">
-          {faqData.map((cat, ci) => (
-            <div key={ci} className="faq-category">
-              <h2 className="faq-category__title"><HelpCircle size={20}/> {cat.cat}</h2>
-              {cat.items.map((item, ii) => {
-                const key = `${ci}-${ii}`;
-                const isOpen = open === key;
-                return (
-                  <div key={key} className={`faq-item card ${isOpen?'faq-item--open':''}`}>
-                    <button className="faq-item__q" onClick={()=>toggle(key)}>
-                      <span>{item.q}</span>
-                      {isOpen ? <ChevronUp size={20}/> : <ChevronDown size={20}/>}
-                    </button>
-                    {isOpen && <div className="faq-item__a"><p>{item.a}</p></div>}
-                  </div>
-                );
-              })}
+          <div className="faq-search card">
+            <label className="faq-search__label" htmlFor="faq-search-input">Buscar no FAQ</label>
+            <input
+              id="faq-search-input"
+              className="faq-search__input"
+              type="search"
+              placeholder="Digite uma palavra-chave, como DARF, fundo ou restituição"
+              value={search}
+              onChange={event => setSearch(event.target.value)}
+            />
+          </div>
+
+          {filteredFaqData.length > 0 ? (
+            filteredFaqData.map((cat, ci) => (
+              <div key={cat.cat} className="faq-category">
+                <h2 className="faq-category__title"><HelpCircle size={20}/> {cat.cat}</h2>
+                {cat.items.map((item, ii) => {
+                  const key = `${cat.cat}-${ii}`;
+                  const isOpen = open === key;
+                  return (
+                    <div key={key} className={`faq-item card ${isOpen?'faq-item--open':''}`}>
+                      <button className="faq-item__q" onClick={()=>toggle(key)}>
+                        <span>{item.q}</span>
+                        {isOpen ? <ChevronUp size={20}/> : <ChevronDown size={20}/>} 
+                      </button>
+                      {isOpen && <div className="faq-item__a"><p>{item.a}</p></div>}
+                    </div>
+                  );
+                })}
+              </div>
+            ))
+          ) : (
+            <div className="faq-empty card">
+              <h2 className="faq-empty__title">Nenhum resultado encontrado</h2>
+              <p className="faq-empty__text">Tente pesquisar por termos mais simples, como “DARF”, “fundos” ou “restituição”.</p>
             </div>
-          ))}
+          )}
         </div>
       </section>
     </div>
