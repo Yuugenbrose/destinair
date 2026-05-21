@@ -19,7 +19,11 @@ export default function Header() {
   useEffect(() => {
     // Bloqueia a rolagem do body quando o menu mobile está aberto
     document.body.style.overflow = mobileOpen ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
+    document.documentElement.style.overflow = mobileOpen ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    };
   }, [mobileOpen]);
 
   const handleLogout = () => {
