@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Plus, Edit, Trash2, X, Building2 } from 'lucide-react';
+import useScrollReveal from '../hooks/useScrollReveal';
 import './Admin.css';
 
 const initialFunds = [
@@ -9,6 +10,7 @@ const initialFunds = [
 ];
 
 export default function AdminFundos() {
+  const rootRef = useScrollReveal();
   const [funds, setFunds] = useState(initialFunds);
   const [showModal, setShowModal] = useState(false);
   const [editing, setEditing] = useState(null);
@@ -30,10 +32,10 @@ export default function AdminFundos() {
   const handleDelete = (id) => { if(confirm('Desativar este fundo?')) setFunds(funds.filter(f=>f.id!==id)); };
 
   return (
-    <div className="admin-page">
-      <section className="section">
+    <div className="admin-page" ref={rootRef}>
+      <section className="section" data-reveal>
         <div className="container">
-          <div className="admin-header">
+          <div className="admin-header" data-reveal>
             <div>
               <h1><Building2 size={28}/> Gestão de Fundos</h1>
               <p>Gerencie os fundos sociais cadastrados na plataforma.</p>
@@ -41,7 +43,7 @@ export default function AdminFundos() {
             <button className="btn btn--primary" onClick={openNew}><Plus size={18}/> Novo Fundo</button>
           </div>
 
-          <div className="dash-table card">
+          <div className="dash-table card" data-reveal style={{ '--reveal-delay': '120ms' }}>
             <table>
               <thead><tr><th>Nome</th><th>Tipo</th><th>Nível</th><th>UF</th><th>Cidade</th><th>Ações</th></tr></thead>
               <tbody>

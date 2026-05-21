@@ -2,9 +2,11 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { UserPlus, Mail, Lock, User, AlertCircle } from 'lucide-react';
+import useScrollReveal from '../hooks/useScrollReveal';
 import './Auth.css';
 
 export default function Register() {
+  const rootRef = useScrollReveal();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -29,8 +31,8 @@ export default function Register() {
   };
 
   return (
-    <div className="auth-page">
-      <div className="auth-card card">
+    <div className="auth-page" ref={rootRef}>
+      <div className="auth-card card" data-reveal>
         <div className="auth-card__header">
           <UserPlus size={28} className="auth-card__icon"/>
           <h1>Cadastrar</h1>

@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { Calculator, Info, ArrowRight, TrendingUp, Heart, Users } from 'lucide-react';
+import useScrollReveal from '../hooks/useScrollReveal';
 import './Simulador.css';
 
 /* Tabela IRPF 2024 (exercício 2025) — atualizar conforme vigente */
@@ -39,6 +40,7 @@ function formatCurrency(val) {
 export default function Simulador() {
   const [income, setIncome] = useState('');
   const [deductions, setDeductions] = useState('');
+  const rootRef = useScrollReveal();
 
   const results = useMemo(() => {
     const monthlyIncome = parseFloat(income.replace(/\D/g, '')) / 100 || 0;
@@ -71,8 +73,8 @@ export default function Simulador() {
   }
 
   return (
-    <div className="simulador">
-      <section className="cf-hero section--dark">
+    <div className="simulador" ref={rootRef}>
+      <section className="cf-hero section--dark" data-reveal>
         <div className="container">
           <div className="section-header">
             <span className="section-header__tag" style={{ color: 'var(--color-accent-light)' }}>Simulador</span>
@@ -85,11 +87,11 @@ export default function Simulador() {
         </div>
       </section>
 
-      <section className="section">
+      <section className="section" data-reveal>
         <div className="container">
-          <div className="sim-layout">
+          <div className="sim-layout" data-reveal>
             {/* Form */}
-            <div className="sim-form card">
+            <div className="sim-form card" data-reveal style={{ '--reveal-delay': '80ms' }}>
               <h2 className="sim-form__title">
                 <Calculator size={24} />
                 Dados para simulação

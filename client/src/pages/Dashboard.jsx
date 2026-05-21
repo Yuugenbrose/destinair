@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { Heart, TrendingUp, FileText, Calculator, ArrowRight, Clock } from 'lucide-react';
+import useScrollReveal from '../hooks/useScrollReveal';
 import './Dashboard.css';
 
 const mockDonations = [
@@ -14,47 +15,48 @@ const statusLabels = { SIMULADA:'Simulada', CONFIRMADA:'Confirmada', PAGA:'Paga'
 const statusBadge = { SIMULADA:'accent', CONFIRMADA:'warning', PAGA:'success' };
 
 export default function Dashboard() {
+  const rootRef = useScrollReveal();
   const { user } = useAuth();
   const totalDonated = mockDonations.filter(d=>d.status==='PAGA').reduce((s,d)=>s+d.amount,0);
 
   return (
-    <div className="dashboard-page">
-      <section className="section">
+    <div className="dashboard-page" ref={rootRef}>
+      <section className="section" data-reveal>
         <div className="container">
-          <div className="dash-welcome">
+          <div className="dash-welcome" data-reveal>
             <h1>Boas-vindas ao seu painel de impacto, {user?.name || 'Contribuinte'} 🚀</h1>
             <p>Acompanhe suas destinações e veja o impacto do seu imposto.</p>
           </div>
 
-          <div className="grid grid--4 mb-8">
-            <div className="kpi-card card card--flat">
+          <div className="grid grid--4 mb-8" data-reveal>
+            <div className="kpi-card card card--flat" data-reveal style={{ '--reveal-delay': '80ms' }}>
               <div className="kpi-card__icon" style={{background:'var(--color-secondary-100)',color:'var(--color-secondary)'}}><TrendingUp size={24}/></div>
               <div className="kpi-card__value">{fmt(totalDonated)}</div>
               <div className="kpi-card__label">Total destinado</div>
             </div>
-            <div className="kpi-card card card--flat">
+            <div className="kpi-card card card--flat" data-reveal style={{ '--reveal-delay': '200ms' }}>
               <div className="kpi-card__icon" style={{background:'var(--color-primary-100)',color:'var(--color-primary)'}}><FileText size={24}/></div>
               <div className="kpi-card__value">{mockDonations.length}</div>
               <div className="kpi-card__label">Doações registradas</div>
             </div>
-            <div className="kpi-card card card--flat">
+            <div className="kpi-card card card--flat" data-reveal style={{ '--reveal-delay': '320ms' }}>
               <div className="kpi-card__icon" style={{background:'var(--color-accent-50)',color:'var(--color-accent)'}}><Heart size={24}/></div>
               <div className="kpi-card__value">2</div>
               <div className="kpi-card__label">Fundos apoiados</div>
             </div>
-            <div className="kpi-card card card--flat">
+            <div className="kpi-card card card--flat" data-reveal style={{ '--reveal-delay': '440ms' }}>
               <div className="kpi-card__icon" style={{background:'#EDE9FE',color:'#7C3AED'}}><Calculator size={24}/></div>
               <div className="kpi-card__value">2024</div>
               <div className="kpi-card__label">Último ano fiscal</div>
             </div>
           </div>
 
-          <div className="dash-section">
+          <div className="dash-section" data-reveal style={{ '--reveal-delay': '560ms' }}>
             <div className="dash-section__header">
               <h2><Clock size={20}/> Doações recentes</h2>
               <Link to="/minhas-doacoes" className="btn btn--ghost">Ver todas <ArrowRight size={16}/></Link>
             </div>
-            <div className="dash-table card">
+            <div className="dash-table card" data-reveal style={{ '--reveal-delay': '640ms' }}>
               <table>
                 <thead><tr><th>Fundo</th><th>Valor</th><th>Ano</th><th>Status</th><th>Data</th></tr></thead>
                 <tbody>

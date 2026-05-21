@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, MapPin, Users, Heart, BarChart3, FileText, ExternalLink, CheckCircle2, X, Download } from 'lucide-react';
+import useScrollReveal from '../hooks/useScrollReveal';
 import './FundoDetalhe.css';
 
 const MOCK_FUND = {
@@ -28,6 +29,7 @@ const fmt = v => (v||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'}
 export default function FundoDetalhe() {
   const { id } = useParams();
   const [selectedReport, setSelectedReport] = useState(null);
+  const rootRef = useScrollReveal();
   const fund = MOCK_FUND;
 
   useEffect(() => {
@@ -50,8 +52,8 @@ export default function FundoDetalhe() {
   };
 
   return (
-    <div className="fundo-detalhe">
-      <section className="fd-hero section--dark">
+    <div className="fundo-detalhe" ref={rootRef}>
+      <section className="fd-hero section--dark" data-reveal>
         <div className="container">
           <Link to="/fundos" className="fd-back"><ArrowLeft size={18}/> Voltar</Link>
           <div className="fd-hero__badges">
@@ -62,11 +64,11 @@ export default function FundoDetalhe() {
           <div className="fd-hero__location"><MapPin size={16}/> {[fund.city,fund.state].filter(Boolean).join(' — ')}</div>
         </div>
       </section>
-      <section className="section">
+      <section className="section" data-reveal>
         <div className="container">
-          <div className="fd-layout">
+          <div className="fd-layout" data-reveal>
             <div className="fd-main">
-              <div className="grid grid--3 mb-8">
+              <div className="grid grid--3 mb-8" data-reveal>
                 <div className="kpi-card card card--flat"><div className="kpi-card__value">{fmt(fund.totalRaised)}</div><div className="kpi-card__label">Total arrecadado</div></div>
                 <div className="kpi-card card card--flat"><div className="kpi-card__value">{fund.projectCount}</div><div className="kpi-card__label">Projetos</div></div>
                 <div className="kpi-card card card--flat"><div className="kpi-card__value">{fund.beneficiariesCount?.toLocaleString('pt-BR')}</div><div className="kpi-card__label">Beneficiados</div></div>
@@ -95,8 +97,8 @@ export default function FundoDetalhe() {
                 ))}
               </div>
             </div>
-            <aside className="fd-sidebar">
-              <div className="fd-sidebar__card card">
+            <aside className="fd-sidebar" data-reveal style={{ '--reveal-delay': '120ms' }}>
+              <div className="fd-sidebar__card card" data-reveal>
                 <h3>Informações</h3>
                 <div className="fd-info-row"><span className="fd-info-label">CNPJ</span><span>{fund.cnpj}</span></div>
                 <div className="fd-info-row"><span className="fd-info-label">Banco</span><span>{fund.bankInfo}</span></div>

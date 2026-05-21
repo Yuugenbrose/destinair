@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { BarChart, Bar, PieChart, Pie, Cell, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
 import { TrendingUp, Users, Heart, Target, Filter, DollarSign } from 'lucide-react';
+import useScrollReveal from '../hooks/useScrollReveal';
 import './Transparencia.css';
 
 const barData = [
@@ -40,9 +41,10 @@ const fmt = v => 'R$ '+(v/1000000).toFixed(1)+'M';
 
 export default function Transparencia() {
   const [year, setYear] = useState('2024');
+  const rootRef = useScrollReveal();
   return (
-    <div className="transparencia">
-      <section className="cf-hero section--dark">
+    <div className="transparencia" ref={rootRef}>
+      <section className="cf-hero section--dark" data-reveal>
         <div className="container">
           <div className="section-header">
             <span className="section-header__tag" style={{color:'var(--color-accent-light)'}}>Transparência</span>
@@ -72,7 +74,7 @@ export default function Transparencia() {
 
           {/* Charts */}
           <div className="trans-charts">
-            <div className="trans-chart card">
+            <div className="trans-chart card" data-reveal style={{ '--reveal-delay': '80ms' }}>
               <h3>Arrecadação por estado (Top 8)</h3>
               <ResponsiveContainer width="100%" height={300}>
                 <BarChart data={barData}>
@@ -87,7 +89,7 @@ export default function Transparencia() {
               </ResponsiveContainer>
             </div>
 
-            <div className="trans-chart trans-chart--small card">
+            <div className="trans-chart trans-chart--small card" data-reveal style={{ '--reveal-delay': '160ms' }}>
               <h3>Distribuição FDCA vs FDI</h3>
               <div className="pie-block">
                 <div className="pie-legend">
@@ -110,7 +112,7 @@ export default function Transparencia() {
               </div>
             </div>
 
-            <div className="trans-chart trans-chart--small card">
+            <div className="trans-chart trans-chart--small card" data-reveal style={{ '--reveal-delay': '240ms' }}>
               <h3>Projetos por categoria</h3>
               <div className="pie-block">
                 <div className="pie-legend">
@@ -133,7 +135,7 @@ export default function Transparencia() {
               </div>
             </div>
 
-            <div className="trans-chart card trans-chart--line">
+            <div className="trans-chart card trans-chart--line" data-reveal style={{ '--reveal-delay': '320ms' }}>
               <h3>Evolução da arrecadação (últimos 6 anos)</h3>
               <ResponsiveContainer width="100%" height={300}>
                 <LineChart data={lineData}>

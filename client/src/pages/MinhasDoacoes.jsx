@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Filter } from 'lucide-react';
+import useScrollReveal from '../hooks/useScrollReveal';
 import './Dashboard.css';
 
 const mockDonations = [
@@ -15,17 +16,18 @@ const statusLabels = { SIMULADA:'Simulada', CONFIRMADA:'Confirmada', PAGA:'Paga'
 const statusBadge = { SIMULADA:'accent', CONFIRMADA:'warning', PAGA:'success' };
 
 export default function MinhasDoacoes() {
+  const rootRef = useScrollReveal();
   return (
-    <div className="dashboard-page">
-      <section className="section">
+    <div className="dashboard-page" ref={rootRef}>
+      <section className="section" data-reveal>
         <div className="container">
-          <div className="dash-welcome">
+          <div className="dash-welcome" data-reveal>
             <Link to="/dashboard" style={{fontSize:'var(--font-size-sm)',display:'inline-flex',alignItems:'center',gap:'4px',marginBottom:'var(--space-4)'}}><ArrowLeft size={16}/> Dashboard</Link>
             <h1>Minhas Doações</h1>
             <p>Histórico completo de todas as suas destinações.</p>
           </div>
 
-          <div className="dash-table card">
+          <div className="dash-table card" data-reveal style={{ '--reveal-delay': '120ms' }}>
             <table>
               <thead><tr><th>Fundo</th><th>Tipo</th><th>Valor</th><th>Ano</th><th>Status</th><th>Data</th></tr></thead>
               <tbody>

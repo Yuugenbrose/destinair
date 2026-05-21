@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, MapPin, Filter, Users, Heart, ChevronRight, Building2 } from 'lucide-react';
+import useScrollReveal from '../hooks/useScrollReveal';
 import './Fundos.css';
 
 /* Mock data — replace with api.getFunds() */
@@ -24,6 +25,7 @@ export default function Fundos() {
   const [typeFilter, setTypeFilter] = useState('ALL');
   const [levelFilter, setLevelFilter] = useState('ALL');
   const [funds, setFunds] = useState(MOCK_FUNDS);
+  const rootRef = useScrollReveal();
 
   const filtered = useMemo(() => {
     return funds.filter(f => {
@@ -38,8 +40,8 @@ export default function Fundos() {
   }, [funds, search, typeFilter, levelFilter]);
 
   return (
-    <div className="fundos-page">
-      <section className="cf-hero section--dark">
+    <div className="fundos-page" ref={rootRef}>
+      <section className="cf-hero section--dark" data-reveal>
         <div className="container">
           <div className="section-header">
             <span className="section-header__tag" style={{ color: 'var(--color-secondary-light)' }}>Diretório</span>
@@ -54,7 +56,7 @@ export default function Fundos() {
       <section className="section">
         <div className="container">
           {/* Filters */}
-          <div className="fundos-filters card">
+          <div className="fundos-filters card" data-reveal>
             <div className="fundos-filters__search">
               <Search size={20} className="fundos-filters__search-icon" />
               <input
@@ -92,14 +94,14 @@ export default function Fundos() {
           </div>
 
           {/* Results count */}
-          <div className="fundos-count">
+          <div className="fundos-count" data-reveal style={{ '--reveal-delay': '80ms' }}>
             <span>{filtered.length} fundo{filtered.length !== 1 ? 's' : ''} encontrado{filtered.length !== 1 ? 's' : ''}</span>
           </div>
 
           {/* Fund Cards */}
           <div className="grid grid--2">
-            {filtered.map(fund => (
-              <Link to={`/fundos/${fund.id}`} key={fund.id} className="fund-card card">
+            {filtered.map((fund, i) => (
+              <Link to={`/fundos/${fund.id}`} key={fund.id} className="fund-card card" data-reveal style={{ '--reveal-delay': `${i * 80}ms` }}>
                 <div className="fund-card__header">
                   <div className={`fund-card__type-badge badge badge--${fund.type === 'FDCA' ? 'primary' : 'secondary'}`}>
                     {fund.type === 'FDCA' ? <Users size={12} /> : <Heart size={12} />}
@@ -135,7 +137,7 @@ export default function Fundos() {
           </div>
 
           {filtered.length === 0 && (
-            <div className="fundos-empty card text-center">
+            <div className="fundos-empty card text-center" data-reveal>
               <Building2 size={48} className="fundos-empty__icon" />
               <h3>Nenhum fundo encontrado</h3>
               <p>Tente ajustar os filtros ou buscar por outro termo.</p>
