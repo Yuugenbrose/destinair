@@ -4,6 +4,7 @@ dist/
 .dev.vars
 .wrangler/
 .mf/
+server/worker-configuration.d.ts
 *.local
 .DS_Store
 .gemini/
