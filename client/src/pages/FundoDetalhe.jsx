@@ -1,5 +1,6 @@
+import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, MapPin, Users, Heart, BarChart3, FileText, ExternalLink, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, MapPin, Users, Heart, BarChart3, FileText, ExternalLink, CheckCircle2, X, Download } from 'lucide-react';
 import './FundoDetalhe.css';
 
 const MOCK_FUND = {
@@ -26,7 +27,27 @@ const fmt = v => (v||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'}
 
 export default function FundoDetalhe() {
   const { id } = useParams();
+  const [selectedReport, setSelectedReport] = useState(null);
   const fund = MOCK_FUND;
+
+  useEffect(() => {
+    document.body.style.overflow = selectedReport ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [selectedReport]);
+
+  const handleDownloadReport = () => {
+    if (!selectedReport) return;
+    const content = `Prestação de Contas: ${selectedReport.title}\nFundo: ${fund.name}\nAno: ${selectedReport.referenceYear}\nPublicado em: ${new Date(selectedReport.publishedAt).toLocaleDateString('pt-BR')}\n\nDetalhes do documento de prestação de contas.`;
+    const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement('a');
+    anchor.href = url;
+    anchor.download = `${selectedReport.title}.txt`;
+    anchor.click();
+    URL.revokeObjectURL(url);
+  };
 
   return (
     <div className="fundo-detalhe">
@@ -69,7 +90,7 @@ export default function FundoDetalhe() {
                 {fund.reports.map(r=>(
                   <div key={r.id} className="fd-report card card--flat">
                     <div><h4>{r.title}</h4><span className="fd-report__date">{new Date(r.publishedAt).toLocaleDateString('pt-BR')}</span></div>
-                    <button className="btn btn--secondary btn--sm"><ExternalLink size={14}/> Ver</button>
+                    <button className="btn btn--secondary btn--sm" onClick={() => setSelectedReport(r)}><ExternalLink size={14}/> Ver</button>
                   </div>
                 ))}
               </div>
@@ -87,6 +108,33 @@ export default function FundoDetalhe() {
           </div>
         </div>
       </section>
+
+      {selectedReport && (
+        <div className="fd-modal-overlay" onClick={() => setSelectedReport(null)}>
+          <div className="fd-modal card" onClick={e => e.stopPropagation()}>
+            <div className="fd-modal__header">
+              <div>
+                <h2>{selectedReport.title}</h2>
+                <p className="fd-modal__date">Publicado em {new Date(selectedReport.publishedAt).toLocaleDateString('pt-BR')}</p>
+              </div>
+              <button className="btn btn--ghost btn--sm" onClick={() => setSelectedReport(null)}><X size={18}/></button>
+            </div>
+            <div className="fd-modal__body">
+              <p>Este relatório apresenta a prestação de contas referente ao ano de {selectedReport.referenceYear}.</p>
+              <p>O documento detalha receitas, despesas e aplicação dos recursos do fundo.</p>
+              <div className="fd-modal__details">
+                <div><strong>Fundo:</strong> {fund.name}</div>
+                <div><strong>Referência:</strong> {selectedReport.referenceYear}</div>
+                <div><strong>Documento:</strong> Prestação de contas completa</div>
+              </div>
+            </div>
+            <div className="fd-modal__actions">
+              <button className="btn btn--secondary btn--sm" onClick={handleDownloadReport}><Download size={14} /> Baixar</button>
+              <button className="btn btn--primary btn--sm" onClick={() => setSelectedReport(null)}>Fechar</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

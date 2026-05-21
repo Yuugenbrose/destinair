@@ -16,6 +16,12 @@ export default function Header() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  useEffect(() => {
+    // Bloqueia a rolagem do body quando o menu mobile está aberto
+    document.body.style.overflow = mobileOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [mobileOpen]);
+
   const handleLogout = () => {
     logout();
     navigate('/');
@@ -92,7 +98,12 @@ export default function Header() {
 
         <button
           className="header__hamburger"
-          onClick={() => setMobileOpen(!mobileOpen)}
+          onClick={() => {
+            if (!mobileOpen) {
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+            setMobileOpen(!mobileOpen);
+          }}
           aria-label="Menu"
         >
           {mobileOpen ? <X size={24} /> : <Menu size={24} />}

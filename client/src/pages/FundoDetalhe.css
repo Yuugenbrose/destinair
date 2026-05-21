@@ -27,6 +27,67 @@
 .fd-info-row { display:flex;flex-direction:column;gap:var(--space-1);padding:var(--space-3) 0;border-bottom:1px solid var(--color-border-light);font-size:var(--font-size-sm); }
 .fd-info-label { font-size:var(--font-size-xs);color:var(--color-text-muted);text-transform:uppercase;letter-spacing:.05em; }
 
+.fd-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+  z-index: 2000;
+}
+
+.fd-modal {
+  width: min(680px, 100%);
+  max-height: min(90vh, 760px);
+  overflow-y: auto;
+  padding: var(--space-6);
+  gap: var(--space-4);
+  display: flex;
+  flex-direction: column;
+}
+
+.fd-modal__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.fd-modal__header h2 {
+  font-size: var(--font-size-2xl);
+  margin-bottom: var(--space-2);
+}
+
+.fd-modal__date {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+.fd-modal__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  color: var(--color-text-secondary);
+}
+
+.fd-modal__details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+  padding: var(--space-4);
+  background: var(--color-bg-alt);
+  border-radius: var(--radius-lg);
+}
+
+.fd-modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-3);
+}
+
 @media(max-width:1024px) {
   .fd-layout { grid-template-columns:1fr; }
   .fd-sidebar { position:static; }

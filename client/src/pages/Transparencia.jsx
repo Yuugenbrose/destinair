@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { BarChart, Bar, PieChart, Pie, Cell, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
-import { TrendingUp, Users, Heart, Target, Filter } from 'lucide-react';
+import { TrendingUp, Users, Heart, Target, Filter, DollarSign } from 'lucide-react';
 import './Transparencia.css';
 
 const barData = [
@@ -57,13 +57,13 @@ export default function Transparencia() {
           {/* KPIs */}
           <div className="grid grid--4 mb-8">
             {[
-              { icon: TrendingUp, value: 'R$ 18,5M', label: 'Total arrecadado', color: 'primary' },
-              { icon: Target, value: '342', label: 'Projetos financiados', color: 'secondary' },
-              { icon: Users, value: '48.200', label: 'Pessoas beneficiadas', color: 'accent' },
-              { icon: Heart, value: '1.240', label: 'Fundos cadastrados', color: 'primary' },
+              { icon: TrendingUp, value: 'R$ 18,5M', label: 'Total arrecadado' },
+              { icon: DollarSign, value: '342', label: 'Projetos financiados' },
+              { icon: Users, value: '48.200', label: 'Pessoas beneficiadas' },
+              { icon: Heart, value: '1.240', label: 'Fundos cadastrados' },
             ].map((k,i) => (
               <div key={i} className="kpi-card card card--flat">
-                <div className={`kpi-card__icon`} style={{background:`var(--color-${k.color}-100)`,color:`var(--color-${k.color})`}}><k.icon size={24}/></div>
+                <div className="kpi-card__icon" style={{background:'var(--color-secondary-100)',color:'var(--color-secondary-600)'}}><k.icon size={24}/></div>
                 <div className="kpi-card__value">{k.value}</div>
                 <div className="kpi-card__label">{k.label}</div>
               </div>
@@ -89,29 +89,51 @@ export default function Transparencia() {
 
             <div className="trans-chart trans-chart--small card">
               <h3>Distribuição FDCA vs FDI</h3>
-              <ResponsiveContainer width="100%" height={250}>
-                <PieChart>
-                  <Pie data={pieData} cx="50%" cy="50%" innerRadius={60} outerRadius={90} dataKey="value" label={({name,value})=>`${name} ${value}%`}>
-                    {pieData.map((e,i)=>(<Cell key={i} fill={e.color}/>))}
-                  </Pie>
-                  <Tooltip/>
-                </PieChart>
-              </ResponsiveContainer>
+              <div className="pie-block">
+                <div className="pie-legend">
+                  <ul>
+                    {pieData.map((d, i) => (
+                      <li key={i}><span className="pie-swatch" style={{background: d.color}}></span><span className="pie-label">{d.name}</span></li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="pie-chart">
+                  <ResponsiveContainer width="100%" height={250}>
+                    <PieChart>
+                      <Pie data={pieData} cx="50%" cy="50%" innerRadius={60} outerRadius={90} dataKey="value" label={({value})=>`${value}%`} labelLine={false}>
+                        {pieData.map((e,i)=>(<Cell key={i} fill={e.color}/>))}
+                      </Pie>
+                      <Tooltip/>
+                    </PieChart>
+                  </ResponsiveContainer>
+                </div>
+              </div>
             </div>
 
             <div className="trans-chart trans-chart--small card">
               <h3>Projetos por categoria</h3>
-              <ResponsiveContainer width="100%" height={250}>
-                <PieChart>
-                  <Pie data={catData} cx="50%" cy="50%" outerRadius={90} dataKey="value" label={({name,value})=>`${name} ${value}%`}>
-                    {catData.map((e,i)=>(<Cell key={i} fill={e.color}/>))}
-                  </Pie>
-                  <Tooltip/>
-                </PieChart>
-              </ResponsiveContainer>
+              <div className="pie-block">
+                <div className="pie-legend">
+                  <ul>
+                    {catData.map((d, i) => (
+                      <li key={i}><span className="pie-swatch" style={{background: d.color}}></span><span className="pie-label">{d.name}</span></li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="pie-chart">
+                  <ResponsiveContainer width="100%" height={250}>
+                    <PieChart>
+                      <Pie data={catData} cx="50%" cy="50%" outerRadius={90} dataKey="value" label={({value})=>`${value}%`} labelLine={false}>
+                        {catData.map((e,i)=>(<Cell key={i} fill={e.color}/>))}
+                      </Pie>
+                      <Tooltip/>
+                    </PieChart>
+                  </ResponsiveContainer>
+                </div>
+              </div>
             </div>
 
-            <div className="trans-chart card">
+            <div className="trans-chart card trans-chart--line">
               <h3>Evolução da arrecadação (últimos 6 anos)</h3>
               <ResponsiveContainer width="100%" height={300}>
                 <LineChart data={lineData}>

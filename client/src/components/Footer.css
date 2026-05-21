@@ -30,6 +30,7 @@
 .footer__logo-text {
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-extrabold);
+  color: var(--color-text-inverse);
 }
 
 .footer__logo-accent {
