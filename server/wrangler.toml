@@ -1,0 +1,12 @@
+name = "destinair-api"
+main = "src/index.js"
+compatibility_date = "2024-12-01"
+
+[vars]
+JWT_SECRET = "destinair-dev-secret-change-in-production"
+CORS_ORIGIN = "http://localhost:5173"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "destinair-db"
+database_id = "bb54627f-d84f-492c-b831-372d9f95a896"

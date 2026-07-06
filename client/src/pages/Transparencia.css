@@ -1,0 +1,42 @@
+.trans-hero-stats { display:flex; gap:var(--space-6); margin-top:var(--space-8); flex-wrap:wrap; }
+.trans-hero-stat {
+  flex:1 1 220px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:var(--radius-xl);
+  padding:var(--space-6);
+  color:#fff;
+  text-align:center;
+}
+.trans-hero-stat--primary { background:rgba(255,255,255,0.1); border-color:rgba(255,255,255,0.2); }
+.trans-hero-stat svg { color:var(--color-accent-light); margin-bottom:var(--space-2); }
+.trans-hero-stat__value { font-size:var(--font-size-3xl); font-weight:var(--font-weight-bold); line-height:1.1; margin-bottom:var(--space-1); }
+.trans-hero-stat--primary .trans-hero-stat__value { font-size:var(--font-size-4xl); }
+.trans-hero-stat__label { font-size:var(--font-size-sm); color:rgba(255,255,255,0.75); }
+
+.trans-context-note { max-width:760px; margin:0 auto var(--space-2); text-align:center; color:var(--color-text-secondary); }
+.trans-source { text-align:center; font-size:var(--font-size-xs); color:var(--color-text-muted); margin-bottom:var(--space-8); }
+.trans-chart__footnote { margin-top:var(--space-4); font-size:var(--font-size-xs); color:var(--color-text-muted); line-height:var(--line-height-relaxed); }
+
+.trans-charts { display:grid;grid-template-columns:1fr 1fr;gap:var(--space-6); }
+.trans-chart { padding:var(--space-6); }
+.trans-chart h3 { font-size:var(--font-size-base);font-weight:var(--font-weight-semibold);margin-bottom:var(--space-4); }
+@media(max-width:768px) { .trans-charts{grid-template-columns:1fr;} }
+
+.pie-block { display:flex; align-items:center; gap:var(--space-4); }
+.pie-legend { width:220px; flex:0 0 220px; }
+.pie-legend ul { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:var(--space-3); }
+.pie-legend li { display:flex; align-items:center; gap:var(--space-3); font-size:var(--font-size-sm); color:var(--color-text); }
+.pie-swatch { width:14px; height:14px; border-radius:3px; display:inline-block; }
+.pie-label { color:var(--color-text-secondary); }
+.pie-chart { flex:1 1 auto; min-width:0; }
+
+@media(max-width:768px) {
+	.pie-block { flex-direction:column; }
+	.pie-legend { width:100%; flex:0 0 auto; }
+	.pie-chart { width:100%; }
+}
+
+.trans-chart--line { padding-right: var(--space-8); padding-top: calc(var(--space-6) + 4px); }
+.trans-chart--line svg { overflow: visible; }
+.trans-chart--line .recharts-surface { overflow: visible; }

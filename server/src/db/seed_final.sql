@@ -1,0 +1,11 @@
+-- ============================================================================
+-- ARQUIVO DESCONTINUADO — NÃO USE ESTE ARQUIVO.
+-- ============================================================================
+-- Este arquivo foi a causa raiz de um dos bugs da versão anterior: ele só
+-- inseria os fundos e NUNCA criava nenhum usuário (nem admin, nem demo).
+-- Como o guia antigo mandava rodar exatamente este arquivo no deploy remoto,
+-- o resultado era um banco com fundos mas sem NENHUM usuário para logar.
+--
+-- Use "seed.sql" (na mesma pasta) como única fonte de seed do projeto.
+-- Ele contém os mesmos 12 fundos + os usuários com senha funcional.
+-- ============================================================================

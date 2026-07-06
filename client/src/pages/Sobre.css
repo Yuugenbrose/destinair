@@ -1,0 +1,6 @@
+.sobre-section h2 { display:flex;align-items:center;gap:var(--space-2);font-size:var(--font-size-xl);margin-bottom:var(--space-4); }
+.sobre-tech-grid { display:flex;flex-wrap:wrap;gap:var(--space-2); }
+.sobre-member { display:flex;align-items:center;gap:var(--space-4);padding:var(--space-4) var(--space-5); }
+.sobre-member__avatar { width:44px;height:44px;border-radius:var(--radius-full);background:var(--gradient-cta);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:var(--font-weight-bold);flex-shrink:0; }
+.sobre-member__name { font-weight:var(--font-weight-semibold);font-size:var(--font-size-sm); }
+.sobre-member__role { font-size:var(--font-size-xs);color:var(--color-text-muted); }
